@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Toaster, toast } from "react-hot-toast";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -13,8 +14,18 @@ const HomePage = () => {
         setCountChar(e.target.value.length);
     }
 
+    const handleCopyText = async () => {
+        try {
+            await navigator.clipboard.writeText(content);
+            toast.success("Copied");
+        } catch (err) {
+            console.error('Error copying text to clipboard:', err);
+        }
+    }
+
     return (
-        <section className="flex flex-col items-center justify-between w-full">
+        <section className="flex flex-col items-center justify-between w-full md:h-screen">
+            <Toaster />
             <div className="w-[99%]">
                 <Navbar />
             </div>
@@ -23,16 +34,26 @@ const HomePage = () => {
                     <h1 className="text-center text-3xl font-bold">TextMagic - Word counter, Character Counter, Remove Spaces, Copy Text</h1>
                 </div>
                 <div className="w-full flex items-center justify-center">
-                    <textarea className="border-2 p-2 border-gray-400 rounded-md w-full h-40" onChange={(e) => { 
-                        handleTextarea(e); 
-                    }}></textarea>
+                    <textarea className="border-2 p-2 border-gray-400 rounded-md w-full h-40" value={content} onChange={(e) => setContent(e.target.value)}></textarea>
                 </div>
                 <div className="w-full gap-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-                    <button className="p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium">Convert to Lowercase</button>
-                    <button className="p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium">Convert to Uppercase</button>
-                    <button className="p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium">Clear Text</button>
-                    <button className="p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium">Copy to Clipboard</button>
-                    <button className="p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium">Remove Extra Spaces</button>
+                    <button onClick={() => {
+                        setContent(content.toLowerCase());
+                        toast.success("Converted to Lowercase");
+                    }} className="p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium">Convert to Lowercase</button>
+                    <button onClick={() => {
+                        setContent(content.toUpperCase());
+                        toast.success("Converted to Uppercase");
+                    }} className="p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium">Convert to Uppercase</button>
+                    <button onClick={() => {
+                        setContent("");
+                        toast.success("Cleared the Text");
+                    }} className="p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium">Clear Text</button>
+                    <button onClick={handleCopyText} className="p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium">Copy to Clipboard</button>
+                    <button onClick={() => {
+                        setContent(content.trim(""));
+                        toast.success("Remove the spaces");
+                    }} className="p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium">Remove Extra Spaces</button>
                 </div>
                 <div className="flex flex-col items-start justify-start w-full">
                     <h1 className="text-2xl font-bold">Text Summary</h1>
