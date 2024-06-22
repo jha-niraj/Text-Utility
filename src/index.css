@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.buttonDarkStyle {
+    @apply bg-green-200 text-black
+}
+
 @keyframes animate {
     0% {
         opacity: 0;

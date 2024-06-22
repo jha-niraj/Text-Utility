@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import Tesseract from 'tesseract.js';
 import { Toaster, toast } from "react-hot-toast";
 
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { ThemeContext } from '../components/ThemeContext';
 
 const ImageToText = () => {
     const [extractedText, setExtractedText] = useState('');
     const [image, setImage] = useState(null);
     const [extracting, setExtracting] = useState(false);
+    const { theme } = useContext(ThemeContext);
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop: (acceptedFiles) => {
@@ -29,8 +31,6 @@ const ImageToText = () => {
         },
     });
 
-    console.log(image ? "Hello" : "Nothing");
-
     const handleCopyText = async () => {
         try {
             await navigator.clipboard.writeText(extractedText);
@@ -41,9 +41,12 @@ const ImageToText = () => {
     }
 
     return (
-        <div className='flex items-center flex-col justify-between gap-5 h-screen'>
+        <div className={`${theme === "black" ? "bg-black text-white" : ""} flex items-center flex-col justify-between gap-5 h-screen`}>
             <Toaster />
-            <Navbar />
+            <div className='w-full'>   
+                <Navbar />
+                <hr />
+            </div>
             <div className="p-2 rounded-lg flex flex-col items-center justify-around gap-7 w-full sm:flex-row">
                 <div {...getRootProps()} className={`bg-gray-700 h-72 w-full flex items-center justify-center rounded-lg ${isDragActive} ? 'active' : ''`}>
                     <input {...getInputProps()} className={`${image ? "hidden" : ""}`} />
@@ -70,7 +73,10 @@ const ImageToText = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
+            <div className="w-full">
+                <hr />
+                <Footer />
+            </div>
         </div>
     );
 };

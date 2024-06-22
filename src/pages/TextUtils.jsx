@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import ImageToText from "./ImageToText";
+import "../index.css";
+import { ThemeContext } from "../components/ThemeContext";
 
 const TextUtils = () => {
     const [ content, setContent ] = useState("");
+    const { theme } = useContext(ThemeContext)
 
     const handleTextarea = (e) => {
         setContent(e.target.value);
@@ -25,10 +27,11 @@ const TextUtils = () => {
     }
 
     return (
-        <section className="flex flex-col items-center justify-between w-full md:h-screen">
+        <section className={`${theme === "black" ? "bg-black text-white" : ""} flex flex-col items-center justify-between w-full h-screen`}>
             <Toaster />
             <div className="w-[99%]">
                 <Navbar />
+                <hr />
             </div>
             <div className="h-full w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] m-3 flex flex-col items-center justify-center gap-3">
                 <div>
@@ -41,20 +44,20 @@ const TextUtils = () => {
                     <button onClick={() => {
                         setContent(content.toLowerCase());
                         toast.success("Converted to Lowercase");
-                    }} className="p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium">Convert to Lowercase</button>
+                    }} className={`${theme === "black" ? "buttonDarkStyle" : ""} p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium`}>Convert to Lowercase</button>
                     <button onClick={() => {
                         setContent(content.toUpperCase());
                         toast.success("Converted to Uppercase");
-                    }} className="p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium">Convert to Uppercase</button>
+                    }} className={`${theme === "black" ? "buttonDarkStyle" : ""} p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium`}>Convert to Uppercase</button>
                     <button onClick={() => {
                         setContent("");
                         toast.success("Cleared the Text");
-                    }} className="p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium">Clear Text</button>
-                    <button onClick={handleCopyText} className="p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium">Copy to Clipboard</button>
+                    }} className={`${theme === "black" ? "buttonDarkStyle" : ""} p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium`}>Clear Text</button>
+                    <button onClick={handleCopyText} className={`${theme === "black" ? "buttonDarkStyle" : ""} p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium`}>Copy to Clipboard</button>
                     <button onClick={() => {
                         setContent(content.trim(""));
                         toast.success("Remove the spaces");
-                    }} className="p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium">Remove Extra Spaces</button>
+                    }} className={`${theme === "black" ? "buttonDarkStyle" : ""} p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium`}>Remove Extra Spaces</button>
                 </div>
                 <div className="flex flex-col items-start justify-start w-full">
                     <h1 className="text-2xl font-bold">Text Summary</h1>
@@ -74,6 +77,7 @@ const TextUtils = () => {
                 </div>
             </div>
             <div className="w-[99%]">
+                <hr />
                 <Footer />
             </div>
         </section>

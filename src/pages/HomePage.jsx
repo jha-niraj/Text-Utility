@@ -1,6 +1,8 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { ThemeContext } from "../components/ThemeContext";
 
 const utilities = [
     {
@@ -16,9 +18,12 @@ const utilities = [
 ]
 
 export default () => {
+    const { theme, toggleTheme } = useContext(ThemeContext);
+
     return (
-        <main className="flex flex-col justify-between h-screen">
+        <main className={`flex flex-col justify-between h-screen bg-${theme} text-${theme === "black" ? "white" : "black"}`}>
             <Navbar />
+            <hr />
             <div className="flex items-center justify-around h-full flex-col p-5 gap-5">
                 <div className="text-center p-2 flex flex-col gap-2">
                     <h1 className="text-4xl font-semibold">Welcome to Text Magic.</h1>
@@ -39,6 +44,7 @@ export default () => {
                     </div>
                 </div>
             </div>
+            <hr />
             <Footer />
         </main>
     )
