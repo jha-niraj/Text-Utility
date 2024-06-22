@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from './pages/HomePage';
 import TextUtils from "./pages/TextUtils";
 import ImageToText from './pages/ImageToText';
-import { ThemeProvider } from './components/ThemeContext';
+import ThemeProvider from './components/ThemeContext';
 
 const App = () => {
 
