@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const utilities = [
     {
         description: "Daily utilities related to text like copying text, converting to Uppercase, lowercase, removing whitespaces etc...",
-        path: "texttoutils",
+        path: "textutils",
         to: "Text Utils"
     },
     {

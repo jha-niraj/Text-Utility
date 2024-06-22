@@ -41,10 +41,10 @@ const ImageToText = () => {
     }
 
     return (
-        <div className='flex items-center flex-col justify-center gap-5'>
+        <div className='flex items-center flex-col justify-between gap-5 h-screen'>
             <Toaster />
             <Navbar />
-            <div className="p-2 rounded-lg flex flex-col gap-3">
+            <div className="p-2 rounded-lg flex flex-col items-center justify-around gap-7 w-full sm:flex-row">
                 <div {...getRootProps()} className={`bg-gray-700 h-72 flex items-center justify-center rounded-lg ${isDragActive} ? 'active' : ''`}>
                     <input {...getInputProps()} className={`${image ? "hidden" : ""}`} />
                     {
@@ -54,7 +54,7 @@ const ImageToText = () => {
                     }
                     <p className={`p-2 text-white ${image ? "hidden" : ""}`}>Drag and drop an image here, or click to select a file</p>
                 </div>
-                <div className={`bg-slate-600 flex items-center flex-col justify-between gap-5 p-3 rounded-lg h-80`}>
+                <div className={`bg-slate-600 flex items-center flex-col justify-between gap-5 p-3 rounded-lg h-80 w-[70%]`}>
                     <div className="text-white">
                         {extracting ? (
                             <p className="text-md font-small">Extracting...</p>
