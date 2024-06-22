@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "../index.css"
 import { Sun, SunMoon, Menu, X } from "lucide-react";
@@ -7,6 +7,7 @@ import { Sun, SunMoon, Menu, X } from "lucide-react";
 const Navbar = () => {
     const [ darkToggle, setDarkToggle ] = useState(false);
     const [ navbarToggle, setNavbarToggle ] = useState(false);
+    const navigate = useNavigate();
 
     const hanldeBlur = () => {
         setDarkToggle(false);
@@ -17,7 +18,7 @@ const Navbar = () => {
             <div className="flex items-center justify-between w-full">
                 <div className="flex items-center justify-center gap-5">
                     <div className="">
-                        <h1 className="text-3xl">TextMagic</h1>
+                        <button onClick={() => navigate("/")} className="text-3xl">TextMagic</button>
                     </div>
                     <div className="hidden sm:flex items-center justify-center gap-5 w-full">
                         <Link to="#">Home</Link>
