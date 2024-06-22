@@ -54,15 +54,15 @@ const ImageToText = () => {
                     }
                     <p className={`p-2 text-white ${image ? "hidden" : ""}`}>Drag and drop an image here, or click to select a file</p>
                 </div>
-                <div className={`bg-slate-600 flex items-center flex-col justify-between gap-5 p-3 rounded-lg h-80 w-full`}>
-                    <div className="text-white">
+                <div className={`bg-slate-600 flex items-center flex-col justify-between gap-5 p-3 rounded-lg ${extractedText ? "h-full" : "h-80"} w-full`}>
+                    <div className="text-white w-full">
                         {extracting ? (
                             <p className="text-md font-small">Extracting...</p>
                         ) : (
                             <p className="text-md font-small">Extracted Text:</p>
                         )} 
                         {extractedText && (
-                            <pre className="p-3 bg-black rounded-lg text-green-200">{extractedText}</pre>
+                            <pre className="p-3 bg-black rounded-lg text-green-200 w-full">{extractedText}</pre>
                         )}
                     </div>
                     <div>
