@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
-        <div className="flex flex-col gap-4 p-3 bg-gray-200 rounded-lg items-center justify-between md:flex-row">
+        <div className="flex flex-col w-full gap-4 p-3 bg-gray-200 rounded-lg items-center justify-between md:flex-row">
             <div>
                 <ul className="flex items-center justify-center gap-3 sm:gap-10">
                     <li className="hover:text-cyan-500 hover:scale-110 transition-all">

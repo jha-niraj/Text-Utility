@@ -1,82 +1,60 @@
-import { useEffect, useState } from "react";
-import { Toaster, toast } from "react-hot-toast";
-
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
 
-const HomePage = () => {
-    const [ content, setContent ] = useState("");
-
-    const handleTextarea = (e) => {
-        setContent(e.target.value);
-        const wordCount = e.target.value.trim().split(/\s+/).length;
-        setCountWord(wordCount);
-        setCountChar(e.target.value.length);
+const utilities = [
+    {
+        description: "Daily utilities related to text like copying text, converting to Uppercase, lowercase, removing whitespaces etc...",
+        path: "texttoutils",
+        to: "Text Utils"
+    },
+    {
+        description: "Extract the text from your image at ease... Then you can also copy and paste it.",
+        path: "imagetotext",
+        to: "Image to Text"
     }
+]
 
-    const handleCopyText = async () => {
-        try {
-            await navigator.clipboard.writeText(content);
-            toast.success("Copied");
-        } catch (err) {
-            console.error('Error copying text to clipboard:', err);
-        }
-    }
+export default () => {
+    return (
+        <main className="flex flex-col justify-between">
+            <Navbar />
+            <div className="flex items-center justify-center flex-col p-5 gap-5">
+                <div className="text-center p-2 flex flex-col gap-2">
+                    <h1 className="text-4xl font-semibold">Welcome to Text Magic.</h1>
+                    <h1 className="text-xl font-mini">Your one stop to daily utilities</h1>
+                </div>
+                <div className="h-full flex items-center flex-col gap-10 justify-center w-full">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                        {
+                            utilities.map((utility, index) => {
+                                return (
+                                    <Card key={index} description={utility.description} path={utility.path} to={utility.to} />
+                                )
+                            })
+                        }
+                    </div>
+                    <div>
+                        <button className="text-center text-xl font-medium bg-green-200 rounded-lg p-2">More utilities coming soon...</button>
+                    </div>
+                </div>
+            </div>
+            <Footer />
+        </main>
+    )
+}
+
+const Card = ({ description, path, to }) => {
+    const navigate = useNavigate();
 
     return (
-        <section className="flex flex-col items-center justify-between w-full md:h-screen">
-            <Toaster />
-            <div className="w-[99%]">
-                <Navbar />
+        <section className="shadow-2xl p-3 w-full flex flex-col gap-4 rounded-lg items-center border-2 border-gray-200 justify-between">
+            <div>
+                <p className="w-[80%] m-auto text-md font-medium text-center">{description}</p>
             </div>
-            <div className="h-full w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] m-3 flex flex-col items-center justify-center gap-3">
-                <div>
-                    <h1 className="text-center text-3xl font-bold">TextMagic - Word counter, Character Counter, Remove Spaces, Copy Text</h1>
-                </div>
-                <div className="w-full flex items-center justify-center">
-                    <textarea className="border-2 p-2 border-gray-400 rounded-md w-full h-40" value={content} onChange={(e) => setContent(e.target.value)}></textarea>
-                </div>
-                <div className="w-full gap-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-                    <button onClick={() => {
-                        setContent(content.toLowerCase());
-                        toast.success("Converted to Lowercase");
-                    }} className="p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium">Convert to Lowercase</button>
-                    <button onClick={() => {
-                        setContent(content.toUpperCase());
-                        toast.success("Converted to Uppercase");
-                    }} className="p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium">Convert to Uppercase</button>
-                    <button onClick={() => {
-                        setContent("");
-                        toast.success("Cleared the Text");
-                    }} className="p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium">Clear Text</button>
-                    <button onClick={handleCopyText} className="p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium">Copy to Clipboard</button>
-                    <button onClick={() => {
-                        setContent(content.trim(""));
-                        toast.success("Remove the spaces");
-                    }} className="p-2 bg-gray-900 hover:scale-105 transition-all duration-500 text-white text-center rounded-lg text-md font-medium">Remove Extra Spaces</button>
-                </div>
-                <div className="flex flex-col items-start justify-start w-full">
-                    <h1 className="text-2xl font-bold">Text Summary</h1>
-                    <div className="flex flex-col">
-                        <p className="text-md font-medium">Words - {content.split(/\s+/).filter((element)=>{return element.length!==0}).length}</p>                        
-                        <p className="text-md font-medium">Characters - { content.length }</p>
-                        <p className="text-md font-medium">Read Minutes - {0.008 * content.split(/\s+/).filter((element)=>{return element.length!==0}).length}</p>
-                    </div>
-                </div>
-                <div className="flex flex-col items-start justify-start w-full">
-                    <h1 className="text-2xl font-bold">Preview</h1>
-                    <div className="">
-                        <p className="text-md font-medium">
-                            {content || "Nothing to Show"}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div className="w-[99%]">
-                <Footer />
+            <div>
+                <button onClick={() => navigate(`/${path}`)} className="bg-black hover:bg-slate-700 text-white font-bold py-2 px-4 rounded">{to}</button>
             </div>
         </section>
     )
 }
-
-export default HomePage;
