@@ -27,7 +27,7 @@ Follow these steps to install and run the Text Utility locally:
    ```bash
    git clone https://github.com/jha-niraj/Text-Utility.git
 
-2. ***Navigate to the Project Directory:*
+2. **Navigate to the Project Directory:**
    ```bash
    cd text-utility
 
