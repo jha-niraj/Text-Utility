@@ -34,7 +34,7 @@ export default () => {
                         {
                             utilities.map((utility, index) => {
                                 return (
-                                    <Card key={index} description={utility.description} path={utility.path} to={utility.to} />
+                                    <Card key={index} description={utility.description} path={utility.path} to={utility.to} theme={theme} />
                                 )
                             })
                         }
@@ -50,7 +50,7 @@ export default () => {
     )
 }
 
-const Card = ({ description, path, to }) => {
+const Card = ({ description, path, to, theme }) => {
     const navigate = useNavigate();
 
     return (
