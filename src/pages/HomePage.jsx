@@ -59,7 +59,7 @@ const Card = ({ description, path, to, theme }) => {
                 <p className="w-[80%] m-auto text-md font-medium text-center">{description}</p>
             </div>
             <div>
-                <button onClick={() => navigate(`/${path}`)} className={`${theme === "black" ? "bg-white text-black" : "bg-black text-white"} hover:bg-slate-700 font-bold py-2 px-4 rounded`}>{to}</button>
+                <button onClick={() => navigate(`/${path}`)} className={`${theme === "black" ? "bg-white text-black" : "bg-black text-white"} hover:bg-slate-700 hover:text-white font-bold py-2 px-4 rounded transition-all duration-300`}>{to}</button>
             </div>
         </section>
     )
