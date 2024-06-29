@@ -23,7 +23,6 @@ export default () => {
     return (
         <main className={`flex flex-col justify-between h-screen bg-${theme} text-${theme === "black" ? "white" : "black"}`}>
             <Navbar />
-            ome
             <div className="flex items-center justify-around h-full flex-col p-5 gap-5">
                 <div className="text-center p-2 flex flex-col gap-2">
                     <h1 className="text-4xl font-semibold">Welcome to Text Magic.</h1>
