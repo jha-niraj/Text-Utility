@@ -23,7 +23,7 @@ export default () => {
     return (
         <main className={`flex flex-col justify-between h-screen bg-${theme} text-${theme === "black" ? "white" : "black"}`}>
             <Navbar />
-            <hr />
+            ome
             <div className="flex items-center justify-around h-full flex-col p-5 gap-5">
                 <div className="text-center p-2 flex flex-col gap-2">
                     <h1 className="text-4xl font-semibold">Welcome to Text Magic.</h1>
@@ -59,7 +59,7 @@ const Card = ({ description, path, to }) => {
                 <p className="w-[80%] m-auto text-md font-medium text-center">{description}</p>
             </div>
             <div>
-                <button onClick={() => navigate(`/${path}`)} className="bg-black hover:bg-slate-700 text-white font-bold py-2 px-4 rounded">{to}</button>
+                <button onClick={() => navigate(`/${path}`)} className={`${theme === "black" ? "bg-white text-black" : ""} bg-black hover:bg-slate-700 text-white font-bold py-2 px-4 rounded`}>{to}</button>
             </div>
         </section>
     )
