@@ -1,7 +1,7 @@
 
-# Text Utility
+# Text Magic
 
-Text Utility is a versatile tool that provides various text manipulation features including converting text to uppercase, converting text to lowercase, removing white spaces, and converting images to text.
+Text Magic is a versatile tool that provides various text manipulation features including converting text to uppercase, converting text to lowercase, removing white spaces, and converting images to text.
 
 ## Features
 
