@@ -18,7 +18,7 @@ Follow these steps to install and run the Text Utility locally:
 
 - Node.js (https://nodejs.org/)
 - npm (Node package manager, comes with Node.js)
-- React.js
+- React.js - You can look React Documentation or some warmup video on YouTube
 - Tailwind.CSS
 
 ### Steps
