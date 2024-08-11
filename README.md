@@ -40,4 +40,4 @@ Follow these steps to install and run the Text Utility locally:
    npm run dev
 
 ### Contributing
-Contributions are welcome! Please create a pull request and ensure that your code follows the existing styles.
+Contributions are welcome! Please create a pull request and ensure that your code follows the existing styles
